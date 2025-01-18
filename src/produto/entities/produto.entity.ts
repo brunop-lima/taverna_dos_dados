@@ -1,8 +1,9 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { NumericTransformer } from "../../util/NumericTransformer";
 import { ItemPedidos } from "../../item_compra/entities/item_pedido.entity";
+import { Estoque } from "../../estoque/entities/estoque.entity";
 
 @Entity({name:"tb_produtos"})
 export class Produto{
@@ -31,5 +32,8 @@ export class Produto{
 
     @OneToMany(() => ItemPedidos, (itemPedidos) => itemPedidos.produto)
     itens: ItemPedidos[];
+
+    @OneToMany(() => Estoque, (estoque) => estoque.produto)
+    estoques: Estoque[];
 
 }

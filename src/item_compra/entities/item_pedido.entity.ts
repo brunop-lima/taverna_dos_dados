@@ -1,6 +1,7 @@
+import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
-import { Produto } from "./produto.entity"; // Ajuste conforme o caminho correto
-import { Pedido } from "./pedido.entity"; // Ajuste conforme o caminho correto
+import { Produto } from "./produto.entity";
+import { Pedido } from "./pedido.entity";
 
 @Entity({ name: "tb_itens_pedidos" })
 export class ItemPedidos {
@@ -8,22 +9,29 @@ export class ItemPedidos {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Produto, (produto) => produto.itens)
+    @ManyToOne(() => Produto, (produto) => produto.itens, { nullable: false, onDelete: "CASCADE" })
     produto: Produto;
 
-    @ManyToOne(() => Pedido, (pedido) => pedido.itens)
+    @ManyToOne(() => Pedido, (pedido) => pedido.itens, { nullable: false, onDelete: "CASCADE" })
     pedido: Pedido;
 
-    @Column()
+    @IsNumber()
+    @IsNotEmpty()
+    @IsPositive()
+    @Column({ type: "int", nullable: false })
     quantidade: number;
 
-    @Column("decimal")
+    @IsNumber({ maxDecimalPlaces: 2 })
+    @IsNotEmpty()
+    @IsPositive()
+    @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
     valorUnitario: number;
 
-    @Column("decimal")
+    @IsNumber({ maxDecimalPlaces: 2 })
+    @Column({ type: "decimal", precision: 10, scale: 2, nullable: false })
     valorTotal: number;
 
-    calcularValorTotal() {
+    calcularValorTotal(): void {
         this.valorTotal = this.quantidade * this.valorUnitario;
     }
 }

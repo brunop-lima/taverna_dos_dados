@@ -1,5 +1,6 @@
-import { OneToMany } from "typeorm";
-import { ItemPedidos } from "./item-pedidos.entity"; 
+import { Entity, PrimaryGeneratedColumn, OneToMany, Column } from "typeorm";
+import { IsNumber, IsPositive } from "class-validator";
+import { ItemPedidos } from "./item-pedidos.entity";
 
 @Entity({ name: "tb_pedidos" })
 export class Pedido {
@@ -7,17 +8,21 @@ export class Pedido {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(() => ItemPedidos, (itemPedidos) => itemPedidos.pedido)
+    @OneToMany(() => ItemPedidos, (itemPedidos) => itemPedidos.pedido, { cascade: true, eager: true })
     itens: ItemPedidos[];
 
-    @Column("decimal", { nullable: true })
+    @IsNumber({ maxDecimalPlaces: 2 })
+    @IsPositive()
+    @Column({ type: "decimal", precision: 10, scale: 2, nullable: true })
     valorTotal: number;
 
-    @Column({ nullable: true })
+    @IsNumber()
+    @IsPositive()
+    @Column({ type: "int", nullable: true })
     quantidadeItens: number;
 
-    calcularResumoPedido() {
-        this.valorTotal = this.itens.reduce((total, item) => total + item.valorTotal, 0);
-        this.quantidadeItens = this.itens.reduce((total, item) => total + item.quantidade, 0);
+    calcularResumoPedido(): void {
+        this.valorTotal = this.itens?.reduce((total, item) => total + item.valorTotal, 0) || 0;
+        this.quantidadeItens = this.itens?.reduce((total, item) => total + item.quantidade, 0) || 0;
     }
 }
