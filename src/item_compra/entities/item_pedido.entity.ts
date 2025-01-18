@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
-import { Produto } from "./produto.entity";
-import { Pedido } from "./pedido.entity";
+import { Produto } from "../../produto/entities/produto.entity";
+import { Pedido } from "../../pedido/entities/pedido.entity";
 
 @Entity({ name: "tb_itens_pedidos" })
 export class ItemPedidos {

@@ -1,7 +1,7 @@
 import { Transform, TransformFnParams } from "class-transformer";
-import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-
+import { IsNotEmpty, IsEmail, MinLength, Matches  } from "class-validator";
+import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Pedido } from "../../pedido/entities/pedido.entity";
 
 @Entity({name:"tb_clientes"})
 export class Cliente{

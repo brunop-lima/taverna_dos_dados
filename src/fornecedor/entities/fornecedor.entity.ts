@@ -1,7 +1,8 @@
 import { Transform, TransformFnParams } from "class-transformer";
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsEmail } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-
+import { OneToMany } from "typeorm";
+import { Estoque } from "../../estoque/entities/estoque.entity";
 
 @Entity({name:"tb_fornecedores"})
 export class Fornecedor{

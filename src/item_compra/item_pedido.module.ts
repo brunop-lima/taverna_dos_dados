@@ -1,10 +1,11 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ItemPedidos } from "./entities/item_pedido.entity";
 
 @Module({
-    imports:[TypeOrmModule.forFeature[(ItemPedido)]],
+    imports: [TypeOrmModule.forFeature([ItemPedidos])],
     controllers:[],
-    proviiders:[],
+    providers:[],
     exports:[TypeOrmModule],
 })
-export class ItemPedidoModule {}
+export class ItemPedidosModule {}

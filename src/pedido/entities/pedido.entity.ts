@@ -1,12 +1,17 @@
 import { Entity, PrimaryGeneratedColumn, OneToMany, Column } from "typeorm";
 import { IsNumber, IsPositive } from "class-validator";
-import { ItemPedidos } from "./item-pedidos.entity";
+import { ItemPedidos } from "../../item_compra/entities/item_pedido.entity";
+import { Cliente } from "../../cliente/entities/cliente.entity";
+import { ManyToOne } from "typeorm";
 
 @Entity({ name: "tb_pedidos" })
 export class Pedido {
 
     @PrimaryGeneratedColumn()
     id: number;
+
+    @ManyToOne(() => Cliente, (cliente) => cliente.pedidos)
+    cliente: Cliente;
 
     @OneToMany(() => ItemPedidos, (itemPedidos) => itemPedidos.pedido, { cascade: true, eager: true })
     itens: ItemPedidos[];

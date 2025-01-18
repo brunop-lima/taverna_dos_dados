@@ -1,11 +1,11 @@
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { Produto } from "./entities/produto.entity";
 import { Module } from "@nestjs/common";
+import { Pedido } from "./entities/pedido.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Produto])],
+    imports: [TypeOrmModule.forFeature([Pedido])],
     providers: [],
     controllers: [],
-    exports: [TypeOrmModule]
+    exports: [TypeOrmModule],
 })
 export class PedidoModule {}

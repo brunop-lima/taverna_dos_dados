@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Produto } from "../../produto/entities/produto.entity";
+import { Fornecedor } from "../../fornecedor/entities/fornecedor.entity";
+import { Transform, TransformFnParams } from "class-transformer";
 
 @Entity({name:"tb_estoque"})
 export class Estoque{
@@ -8,7 +10,7 @@ export class Estoque{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() = > Produto, (produto) => produto.estoques, {onDelete:"CASCADE"})
+    @ManyToOne(() => Produto, (produto) => produto.estoques, {onDelete:"CASCADE"})
     produto: Produto;
 
     @ManyToOne(() => Fornecedor, (fornecedor) => fornecedor.estoques)

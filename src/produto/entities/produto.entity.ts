@@ -4,6 +4,8 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { NumericTransformer } from "../../util/NumericTransformer";
 import { ItemPedidos } from "../../item_compra/entities/item_pedido.entity";
 import { Estoque } from "../../estoque/entities/estoque.entity";
+import { Categoria } from "../../categoria/entities/categoria.entity";
+import { ManyToOne } from "typeorm";
 
 @Entity({name:"tb_produtos"})
 export class Produto{
