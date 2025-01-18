@@ -7,6 +7,9 @@ export class Estoque{
     @PrimaryGeneratedColumn()
     id: number;
 
+    @ManyToOne(() => Fornecedor, (fornecedor) => fornecedor.estoques)
+    fornecedor: Fornecedor;
+
     @IsNumber()
     @IsNotEmpty()
     @IsPositive()

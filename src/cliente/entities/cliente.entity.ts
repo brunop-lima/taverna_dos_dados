@@ -37,4 +37,7 @@ export class Cliente{
     @UpdateDateColumn()
     data: Date;
 
+    @OneToMany(() => Pedido, (pedido) => pedido.cliente)
+    pedidos: Pedido[];
+    
 }

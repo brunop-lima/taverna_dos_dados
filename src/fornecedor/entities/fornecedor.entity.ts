@@ -28,4 +28,7 @@ export class Fornecedor{
     @UpdateDateColumn()
     data: Date;
 
+    @OneToMany(() => Estoque, (estoque) => estoque.fornecedor)
+    estoques: Estoque[];
+
 }
