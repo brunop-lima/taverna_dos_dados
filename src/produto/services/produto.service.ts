@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
 import { Produto } from "../entities/produto.entity";
-import { CategoariaService } from "../../categoria/services/categoria.service";
+import { CategoriaService } from "../../categoria/services/categoria.service";
 
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ProdutoService {
   constructor(
     @InjectRepository(Produto)
     private produtoRepository: Repository<Produto>,
-    private categoriaService: CategoariaService,
+    private categoriaService: CategoriaService,
   ) {}
 
   async findAll(): Promise<Produto[]> {

@@ -4,7 +4,7 @@ import { Categoria } from "../entities/categoria.entity";
 import { DeleteResult, Repository } from "typeorm";
 
 @Injectable()
-export class CategoariaService {
+export class CategoriaService {
 
     constructor(
         @InjectRepository(Categoria)
