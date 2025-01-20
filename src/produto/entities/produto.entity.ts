@@ -32,6 +32,9 @@ export class Produto{
     @Column({ type: "decimal", precision: 10, scale: 2, transformer: new NumericTransformer() })
     preco: number;
 
+    @Column({ nullable: true }) 
+    imagem: string;
+
     @OneToMany(() => ItemPedidos, (itemPedidos) => itemPedidos.produto)
     itens: ItemPedidos[];
 
