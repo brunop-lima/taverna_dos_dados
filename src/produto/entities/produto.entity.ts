@@ -39,3 +39,4 @@ export class Produto{
     estoques: Estoque[];
 
 }
+
